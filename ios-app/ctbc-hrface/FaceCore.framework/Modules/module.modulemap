@@ -1,0 +1,11 @@
+framework module FaceCore {
+  umbrella header "FaceCore.h"
+
+  export *
+  module * { export * }
+}
+
+module FaceCore.Swift {
+    header "FaceCore-Swift.h"
+    requires objc
+}

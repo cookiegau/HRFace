@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SDK_License_Endpoint</key>
+	<string>http://aigo-cpu.ctbcbank.com/reg/hrface/</string>
+	<key>SDK_Token_Endpoint</key>
+	<string>http://aigo-cpu.ctbcbank.com/api/</string>
+	<key>SDK_Token_UserName</key>
+	<string>hrface</string>
+	<key>SDK_Token_Password</key>
+	<string>nMhc1l3xofjC04txUW0htq2M+MkqOkzBIyss98vCfbve5AZ/fbSplWVKwanpXIDxoe6RGo2b773q5RxynIJIHEGGvsk=</string>
+	<key>SDK_Service_Endpoint</key>
+	<string>http://aigo-cpu.ctbcbank.com/api/hrface/</string>
+	<key>SDK_License_Key</key>
+	<string>7a548e3a-9488-43be-9ed5-e72ad7735d21</string>
+	<key>SDK_Log_Url</key>
+	<string>http://aigo-cpu.ctbcbank.com/log/aigo</string>
+	<key>SDK_License_Endpoint.bak</key>
+	<string>http://34.80.227.3:8891/</string>
+	<key>SDK_Token_Endpoint.bak</key>
+	<string>http://34.83.137.52:8080/api/</string>
+</dict>
+</plist>
