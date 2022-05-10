@@ -404,7 +404,7 @@ class ViewUtils
 		parentView.addSubview( view )
 	}
 
-	static func setTestBoxes()
+	static func showTestFaceBoxes()
 	{
 		_ = Timer.scheduledTimer( withTimeInterval: 1.0, repeats: false )
 		{

@@ -11,6 +11,9 @@ public class RtVars
 	public static var IsAllowServerLog = true
 	public static var IsServerLogFullMode = true
 
+	// set ture when backend connected, control CameraCapturer
+	public static var IsBackendConnected = false
+
 
 	public static var MaintainMessage = ""
 	public static var IsDisableButtons = false

@@ -55,7 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 	{
 		Log.Info( "[App] Enter Background" )
 		Log.TriggerInterval()
-		//exit(0)
 	}
 	func applicationWillEnterForeground( _ application: UIApplication ) {}
 	func applicationDidBecomeActive( _ application: UIApplication ) {}
@@ -63,12 +62,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 	{
 		Log.Info( "[App] Enter Terminate" )
 		Log.TriggerInterval()
-		//exit(0)
 	}
 
     func controllerDidFinishInitialCheck( error: NSError? )
     {
-        self.AirWatchControllerInitialCheck( error: error ) //setting please follow AppDelegate.AirWatch.swift
+        let ok = self.AirWatchControllerInitialCheck( error: error ) //setting please follow AppDelegate.AirWatch.swift
+
+		if ok == false
+		{
+			var msg = "\( String( describing: error ) )"
+			if msg.length <= 1 { msg = "failed code 0x00" }
+
+			Log.Error( "[App] init airWatch failed, ( \( msg ) ), App Stop." )
+			RecognizeVC.shared.ShowPopupMaintain( "初始化AirWatch失敗\n\( msg )", false )
+		}
+		else
+		{
+			do { try RecognizeVC.shared.InitConfigs() }
+			catch
+			{
+				RecognizeVC.shared.ShowPopupMaintain( "初始化AirWatch失敗\n\( error.localizedDescription )", false )
+				Log.Error( "[App] init airWatch failed, ( \( error.localizedDescription ) ), App Stop." )
+				return
+			}
+
+			RecognizeVC.shared.InitAppService()
+
+		}
     }
 }
 

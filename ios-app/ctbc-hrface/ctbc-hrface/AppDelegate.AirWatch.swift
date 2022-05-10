@@ -9,9 +9,21 @@ import CtbcCore
 //------------------------------------------------------------------------------
 //extension AppDelegate
 //{
-//    func StartAirWatch() {}
+//    func StartAirWatch()
+//	{
+//		// force push AirWatch Fail..
+//        // let ex = NSError( domain: Http.ErrorDomain, code: 301, userInfo: [ NSLocalizedDescriptionKey: "without AirWatch" ] )
+//		// self.controllerDidFinishInitialCheck( error: ex )
+//
+//		// normal into AirWatch logic for test
+//		self.controllerDidFinishInitialCheck( error: nil )
+//	}
 //    func AirWatchHandleOpenUrl( _ url:URL, _ sourceApplication:String? ) -> Bool { return false }
-//    func AirWatchControllerInitialCheck( error: NSError? ) {}
+//    func AirWatchControllerInitialCheck( error: NSError? ) -> Bool
+//    {
+//        if error != nil { return false }
+//        return true
+//    }
 //}
 
 
@@ -48,16 +60,17 @@ extension AppDelegate : AWControllerDelegate
         return false
     }
 
-    func AirWatchControllerInitialCheck( error: NSError? )
+    func AirWatchControllerInitialCheck( error: NSError? ) -> Bool
     {
         if error != nil {
-            Log.Debug( "[App] AirWatch SDK initial failed: \( String( describing: error) )" )
-            AWLogError( "AirWatch SDK initial failed: \( String( describing: error) )" )
-            return
+            Log.Debug( "[App] AirWatch SDK initial failed: \( String( describing: error ) )" )
+            AWLogError( "AirWatch SDK initial failed: \( String( describing: error ) )" )
+            return false
         }
 
         Log.Debug( "[AirWatch] AirWatch SDK Initialize Success" )
         AWLogInfo( "AirWatch SDK initial success" )
+        return true
     }
 }
 #endif
