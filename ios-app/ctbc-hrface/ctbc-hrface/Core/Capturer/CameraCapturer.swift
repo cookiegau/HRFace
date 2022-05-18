@@ -73,7 +73,7 @@ class CameraCapturer: Capturer, AVCaptureVideoDataOutputSampleBufferDelegate, AV
 		{
 			Log.Error( "[session] interrupted, reason[\( reason )]" )
 
-			RecognizeVC.shared.HandleFlowErrorBy( "[App] 相機裝置連接失敗\n\( reason )", Err.Initialize( "[Camera] session was interrputed, \( reason )" ) )
+			RecognizeVC.shared.HandleFlowErrorBy( "[App] 相機裝置連接失敗\n\( reason )", Err.Initialize( "[Camera] session was interrupted, \( reason )" ) )
 		}
 	}
 
@@ -423,6 +423,8 @@ class CameraCapturer: Capturer, AVCaptureVideoDataOutputSampleBufferDelegate, AV
 
 	func ProcessDrawLogic()
 	{
+		if ( !RtVars.IsBackendConnected ) { return }
+
 		if ( RtVars.PauseReason.length > 0 || ( RtVars.CurrentLivingMode && self.NowImageDepth == nil ) )
 		{
 			RecognizeVC.FDOlds.removeAll()

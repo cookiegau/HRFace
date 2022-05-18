@@ -74,18 +74,7 @@ class RecognizeVC: BaseVC
 		Log.Info( "[App] Start, iOS[\( UIDevice.current.systemVersion )] App[\( txtVer )]" )
 		self.InitializeViews()
 
-		do
-		{
-			try self.InitializeConfigs()
-		}
-		catch
-		{
-			ShowPopupMaintain( "初始化設定檔失敗\n\( error.localizedDescription )", false )
-			Log.Error( "[App] init configs failed, ( \( error.localizedDescription ) ), App Stop." )
-			return
-		}
-
-		self.InitializeStart()
+		RecognizeVC.shared.ShowPopupMaintain( "...初始化SDK...", false )
 	}
 
 	public static func OnButtonStateChanged()
@@ -97,26 +86,10 @@ class RecognizeVC: BaseVC
 		}
 		else
 		{
-			if ( FeatureVC.shared.IsShow )
-			{
-				RecognizeVC.btnAnnounce.fadeTo( 0.5, 0.1 )
-				RecognizeVC.btnSatisfaction.fadeTo( 0.5, 0.1 )
-			}
-			else
-			{
-				RecognizeVC.btnAnnounce.fadeTo( 0.6, 1.0 )
-				RecognizeVC.btnSatisfaction.fadeTo( 0.6, 1.0 )
-			}
+			if ( FeatureVC.shared.IsShow ) { RecognizeVC.btnAnnounce.fadeTo( 0.5, 0.1 ); RecognizeVC.btnSatisfaction.fadeTo( 0.5, 0.1 ) } else { RecognizeVC.btnAnnounce.fadeTo( 0.6, 1.0 ); RecognizeVC.btnSatisfaction.fadeTo( 0.6, 1.0 ) }
 		}
 
-		if ( RtVars.IsEnableFeatureAdmin )
-		{
-			RecognizeVC.btnFeatureAdmin.fadeTo( 0.5, 1.0 )
-		}
-		else
-		{
-			RecognizeVC.btnFeatureAdmin.fadeTo( 0.5, 0.0 )
-		}
+		if ( RtVars.IsEnableFeatureAdmin ) { RecognizeVC.btnFeatureAdmin.fadeTo( 0.5, 1.0 ) } else { RecognizeVC.btnFeatureAdmin.fadeTo( 0.5, 0.0 ) }
 	}
 
 	//==========================================================================================

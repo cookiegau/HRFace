@@ -16,7 +16,7 @@ let hasCamera = AVCaptureDevice.DiscoverySession( deviceTypes: [ .builtInWideAng
 extension RecognizeVC
 {
 	//==========================================================================================
-	func InitializeConfigs() throws
+	func InitConfigs() throws
 	{
 		do
 		{
@@ -155,9 +155,9 @@ extension RecognizeVC
 	}
 
 	//==========================================================================================
-	func InitializeStart()
+	func InitAppService()
 	{
-		self.ShowPopupMaintain( "...初始化中...", false )
+		self.ShowPopupMaintain( "...初始化連線...", false )
 
 		Log.Debug( "[App] detecting network status..." )
 		let ipv4 = NetUtils.GetAvailableIPv4()
@@ -165,7 +165,7 @@ extension RecognizeVC
 		guard let ip = ipv4 else
 		{
 			self.ShowPopupMaintain( "初始化失敗\n無法取得IP" )
-			_ = Timer.scheduledTimer( withTimeInterval: 5.0, repeats: false ) { _ in self.InitializeStart() }
+			_ = Timer.scheduledTimer( withTimeInterval: 5.0, repeats: false ) { _ in self.InitAppService() }
 			return
 		}
 
@@ -340,6 +340,8 @@ extension RecognizeVC
 					Log.Error( "[Checker] connection lost, code[\( ex.code )] message[\( ex.message )] error[\( ex.error )] StartDate[\( dtS )]" )
 					return
 				}
+
+				RtVars.IsBackendConnected = true
 
 				Log.Debug( "[Checker] htbt success, get configs for IP[\( Api.NowIP )]" )
 				Api.GetConfigs
