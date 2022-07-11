@@ -37,8 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 	}
     func application( _ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:] ) -> Bool
     {
-        Log.Debug( "[OpenURL] url[\( url.absoluteString )] options: \( options )" )
-        return self.AirWatchHandleOpenUrl( url, nil ) //setting please follow AppDelegate.AirWatch.swift
+		Log.Debug( "[OpenURL] url[\( url.absoluteString )] options: \( options )" )
+
+		let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String
+		return self.AirWatchHandleOpenUrl( url, sourceApplication ) //setting please follow AppDelegate.AirWatch.swift
     }
     func application( _ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any ) -> Bool
     {
